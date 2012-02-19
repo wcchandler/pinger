@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+  <frontend>
+    <refresh>10000</refresh>
+  </frontend>
+  <devices>
+    <switch>
+      <ip>172.20.10.1</ip>
+      <parent>172.20.1.1</parent>
+      <name>North Campus Core</name>
+    </switch>
+    <switch>
+      <ip>172.20.1.80</ip>
+      <parent>172.20.1.1</parent>
+      <name>NA</name>
+    </switch>
+    <switch>
+      <ip>127.0.0.1</ip>
+      <parent></parent>
+      <name>localhost</name>
+    </switch>
+    <switch>
+      <ip>172.20.1.101</ip>
+      <parent>172.20.1.1</parent>
+      <name>NA</name>
+    </switch>
+    <switch>
+      <ip>172.20.10.53</ip>
+      <parent>172.20.10.53</parent>
+      <name>NA</name>
+    </switch>
+    <switch>
+      <ip>192.168.1.1</ip>
+      <parent>192.168.1.1</parent>
+      <name>WilliamCore</name>
+    </switch>
+    <switch>
+      <ip>192.168.1.114</ip>
+      <parent>192.168.1.1</parent>
+      <name>Win7 Virt</name>
+    </switch>
+    <switch>
+      <ip>4.2.2.4</ip>
+      <parent>192.168.1.1</parent>
+      <name>Google DNS Server</name>
+    </switch>
+  </devices>
+</config>
