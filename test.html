@@ -5,8 +5,8 @@
     body{ font-size: 1.05em; font-family: Arial; color: #111; }
     div { background-color: #EEE; font-weight: bold; }
   </style>
-  <script src="jquery-latest.js"></script>
-  <!-- <script src="http://code.jquery.com/jquery-latest.js"></script> -->
+  <!-- <script src="jquery-latest.js"></script> -->
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
   
@@ -21,14 +21,14 @@
 <script>
 
   function pinger(){
-    $.getJSON("/ping.php?host=172.20.10.1",callBack);
-    $.getJSON("/ping.php?host=127.0.0.1",callBack);
-    $.getJSON("/ping.php?host=172.20.1.80",callBack);
-    $.getJSON("/ping.php?host=172.20.10.1",callBack);
-    $.getJSON("/ping.php?host=172.20.1.101",callBack);
-    $.getJSON("/ping.php?host=172.20.10.53",callBack);
-    $.getJSON("/ping.php?host=192.168.1.1",callBack);
-    $.getJSON("/ping.php?host=192.168.1.114",callBack);
+    $.getJSON("ping.php?host=172.20.10.1",callBack);
+    $.getJSON("ping.php?host=127.0.0.1",callBack);
+    $.getJSON("ping.php?host=172.20.1.80",callBack);
+    $.getJSON("ping.php?host=172.20.10.1",callBack);
+    $.getJSON("ping.php?host=172.20.1.101",callBack);
+    $.getJSON("ping.php?host=172.20.10.53",callBack);
+    $.getJSON("ping.php?host=192.168.1.1",callBack);
+    $.getJSON("ping.php?host=192.168.1.114",callBack);
 
     setTimeout(pinger, 10000);
   }
