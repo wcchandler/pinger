@@ -4,6 +4,9 @@
     <refresh>10000</refresh>
     <nameorip>ip</nameorip>
   </frontend>
+  <backend>
+    <timeout>1</timeout>
+  </backend>
   <devices>
     <switches>
       <switch>

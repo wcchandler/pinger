@@ -37,7 +37,7 @@
         // if neither is chosen, both will be picked
         echo "<span class=\"item\" id=\"h$str\">$end->name - $end->ip</span>\n";
       }
-      $js_str = $js_str."    $.getJSON(\"ping.php?host=$end->ip\",callBack);\n";
+      $js_str = $js_str."    $.getJSON(\"ping.php?ping=$end->ip\",callBack);\n";
     }
     echo "</div><br />";
   }
@@ -58,13 +58,31 @@
 
   function callBack(json){
     if(json.res == "1"){
-      $("#"+json.id).css("background-color","#00DD00"); 
-      $("#"+json.id).css("color","#222222"); 
+      if($("#"+json.id).hasClass("up")){ 
+        // it was up and is now up, do nothing
+      }else if($("#"+json.id).hasClass("down")){ 
+        // it was down and is now up, get rid of down, add up
+        $("#"+json.id).toggleClass("down"); 
+        $("#"+json.id).toggleClass("up");
+      }else{
+        // it was nothing, now up, add up
+        $("#"+json.id).toggleClass("up");
+      }
     }else if(json.res == "0"){
-      $("#"+json.id).css("background-color","#DD0000"); 
-      $("#"+json.id).css("color","#EEEEEE"); 
+      if($("#"+json.id).hasClass("down")){ 
+        // it was down and is now down, do nothing
+      }else if($("#"+json.id).hasClass("up")){ 
+        // it was down and is now up, get rid of up, add down
+        // add an alert or something here, news feed???
+        $("#"+json.id).toggleClass("up"); 
+        $("#"+json.id).toggleClass("down");
+      }else{
+        // it was nothing, now down, add down
+        $("#"+json.id).toggleClass("down");
+      }
     }else{
-      $("#"+json.id).css("background-color","#666666"); 
+      // this means my script failed and it's setting stuff to black
+      $("#"+json.id).css("background-color","#000000"); 
       $("#"+json.id).css("color","#EEEEEE"); 
     }
   }
