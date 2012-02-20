@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body{ font-size: 1.05em; font-family: Arial; color: #111; }
+    div { background-color: #EEE; font-weight: bold; }
+  </style>
+  <!-- <script src="jquery-latest.js"></script> -->
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+  
+<div id="h172_20_10_1">172.20.10.1</div>
+<div id="h172_20_1_80">172.20.1.80</div>
+<div id="h127_0_0_1">127.0.0.1</div>
+<div id="h172_20_1_101">172.20.1.101</div>
+<div id="h172_20_10_53">172.20.10.53</div>
+<div id="h192_168_1_1">192.168.1.1</div>
+<div id="h192_168_1_114">192.168.1.114</div>
+  
+<script>
+
+  function pinger(){
+    $.getJSON("ping.php?host=172.20.10.1",callBack);
+    $.getJSON("ping.php?host=127.0.0.1",callBack);
+    $.getJSON("ping.php?host=172.20.1.80",callBack);
+    $.getJSON("ping.php?host=172.20.10.1",callBack);
+    $.getJSON("ping.php?host=172.20.1.101",callBack);
+    $.getJSON("ping.php?host=172.20.10.53",callBack);
+    $.getJSON("ping.php?host=192.168.1.1",callBack);
+    $.getJSON("ping.php?host=192.168.1.114",callBack);
+
+    setTimeout(pinger, 10000);
+  }
+
+  function callBack(json){
+    if(json.res == "1"){
+      $("#"+json.id).css("background-color","#00CC00"); 
+      $("#"+json.id).css("color","#111111"); 
+    }else if(json.res == "0"){
+      $("#"+json.id).css("background-color","#CC0000"); 
+      $("#"+json.id).css("color","#EEEEEE"); 
+    }else{
+      $("#"+json.id).css("background-color","#666666"); 
+      $("#"+json.id).css("color","#EEEEEE"); 
+    }
+  }
+
+
+  pinger();
+</script>
+
+</body>
+</html>
