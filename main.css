@@ -9,6 +9,20 @@ div {
   background-color: #EEE;
 }
 
+#stats {
+  text-align: right;
+  font-size: 0.85em;
+  color: #888888;
+  background-color: #FFFFFF;
+}
+
+#key {
+  text-align: right;
+  font-size: 0.85em;
+  color: #888888;
+  background-color: #FFFFFF;
+}
+
 .category {
   background-color: #DDDDDD;
   font-size: 1.25em;
@@ -35,8 +49,19 @@ div {
 
 #header {
   font-size: 1.25em;
+  font-weight: bolder;
 }
 
 #feed {
 
 }
+
+.up {
+  background-color: #00DD00;
+  color: #222222;
+}
+
+.down{
+  background-color: #DD0000; 
+  color: #EEEEEE;
+} 

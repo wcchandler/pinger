@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>pinger - Simple Pinging Webapp</title>
   <link rel="stylesheet" href="main.css" type="text/css" />
   <!-- <script src="jquery-latest.js"></script> -->
   <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -10,11 +11,19 @@
 <?php
   // loads up config.xml as simplexml object
   $xml = simplexml_load_file("config.xml");
+
+  // status bar at the top, time that gets updated every time would be nice
+  echo "<div id=\"stats\" class=\"category\">update interval: ".
+       ($xml->frontend->refresh/1000)."s; last updated: <span id=\"update\">".
+       "</span> (server time)</div>";
+  echo "<div id=\"key\" class=\"category\">key: <span class=\"item up\">up".
+       "</span><span class=\"item down\">down</span></div>";
   //print_r($xml);
   // echos out a div for each element/device
   // sample:
   //   <div id="h172_20_10_1">172.20.10.1</div>
   //   h is prepended before the ip to as an HTML rule
+  
   foreach($xml->devices->children() as $device){
     $name = $device->getName();
     echo "<div class=\"category\"><span id=\"header\">$name</span><br />\n";
@@ -39,8 +48,11 @@
 
 
   function pinger(){
+    // php'd string, compiled above
+    // this makes things more versatile
+    // 
     <?php echo $js_str; ?>
-
+    $("#update").load("ping.php?updateTime");
     setTimeout(pinger, <?php echo $xml->frontend->refresh ?>);
   }
 

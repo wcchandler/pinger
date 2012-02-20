@@ -1,5 +1,10 @@
 <?php
 
+if(isset($_GET['updateTime'])){
+  echo date('h:m:s a');
+  return 0;
+}
+
 if($_GET['host'] == ""){
   $host = "127.0.0.1";
 }else{

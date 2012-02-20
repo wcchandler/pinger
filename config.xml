@@ -30,19 +30,19 @@
         <ip>192.168.1.1</ip>
         <name>WilliamCore</name>
       </switch>
-      <switch>
-        <ip>192.168.1.114</ip>
-        <name>Win7 Virt</name>
-      </switch>
-      <switch>
-        <ip>4.2.2.4</ip>
-        <name>Google DNS Server</name>
-      </switch>
     </switches>
     <servers>
       <server>
         <ip>192.168.1.148</ip>
         <name>desktop</name>
+      </server>
+      <server>
+        <ip>4.2.2.4</ip>
+        <name>Google DNS Server</name>
+      </server>
+      <server>
+        <ip>192.168.1.114</ip>
+        <name>Win7 Virt</name>
       </server>
     </servers>
   </devices>
