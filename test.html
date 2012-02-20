@@ -2,22 +2,64 @@
 <html>
 <head>
   <style>
-    body{ font-size: 1.05em; font-family: Arial; color: #111; }
-    div { background-color: #EEE; font-weight: bold; }
+    body{ 
+      font-size: 1.05em; 
+      font-family: Arial; 
+      color: #111; 
+      background-color:
+    }
+    div {
+      background-color: #EEE; 
+    }
+    .category { 
+      background-color: #DDDDDD;
+      font-size: 1.25em;
+      color: #333333;
+      width: 95%;
+      padding: 0px 10px 5px 10px;
+      -moz-border-radius: 20px;
+      -webkit-border-radius: 20px;
+      -khtml-border-radius: 20px;
+      border-radius: 20px;
+    }
+    .item {
+      width: 100%;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -khtml-border-radius: 5px;
+      border-radius: 5px;
+      margin: 0px 2px 0px 2px;
+      padding: 1px 3px 1px 3px;
+      font-weight: bold;
+    }
+    #header {
+      font-size: 1.25em;
+    }
+    #feed {
+      
+    }
   </style>
   <!-- <script src="jquery-latest.js"></script> -->
   <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
   
-<div id="h172_20_10_1">172.20.10.1</div>
-<div id="h172_20_1_80">172.20.1.80</div>
-<div id="h127_0_0_1">127.0.0.1</div>
-<div id="h172_20_1_101">172.20.1.101</div>
-<div id="h172_20_10_53">172.20.10.53</div>
-<div id="h192_168_1_1">192.168.1.1</div>
-<div id="h192_168_1_114">192.168.1.114</div>
-  
+<div class="category"><span id="header">switches</span><br />
+  <span class="item" id="h172_20_10_1">172.20.10.1</span>
+  <span class="item" id="h172_20_1_80">172.20.1.80</span>
+  <span class="item" id="h127_0_0_1">127.0.0.1</span>
+  <span class="item" id="h172_20_1_101">172.20.1.101</span>
+  <span class="item" id="h172_20_10_53">172.20.10.53</span>
+  <span class="item" id="h192_168_1_1">192.168.1.1</span>
+  <span class="item" id="h192_168_1_114">192.168.1.114</span>
+  <span class="item" id="h192_168_1_114">192.168.1.114</span>
+  <span class="item" id="h192_168_1_114">192.168.1.114</span>
+  <span class="item" id="h192_168_1_114">192.168.1.114</span>
+  <span class="item" id="h192_168_1_114">192.168.1.114</span>
+  <span class="item" id="h192_168_1_114">192.168.1.114</span>
+  <span class="item" id="h192_168_1_114">192.168.1.114</span>
+</div>  
+
 <script>
 
   function pinger(){
@@ -35,10 +77,10 @@
 
   function callBack(json){
     if(json.res == "1"){
-      $("#"+json.id).css("background-color","#00CC00"); 
-      $("#"+json.id).css("color","#111111"); 
+      $("#"+json.id).css("background-color","#00DD00"); 
+      $("#"+json.id).css("color","#222222"); 
     }else if(json.res == "0"){
-      $("#"+json.id).css("background-color","#CC0000"); 
+      $("#"+json.id).css("background-color","#DD0000"); 
       $("#"+json.id).css("color","#EEEEEE"); 
     }else{
       $("#"+json.id).css("background-color","#666666"); 

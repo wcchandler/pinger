@@ -1,0 +1,42 @@
+body{
+  font-size: 1.05em;
+  font-family: Arial;
+  color: #111;
+  background-color:
+}
+
+div {
+  background-color: #EEE;
+}
+
+.category {
+  background-color: #DDDDDD;
+  font-size: 1.25em;
+  color: #333333;
+  width: 95%;
+  padding: 0px 10px 5px 10px;
+  margin: 0 auto;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -khtml-border-radius: 20px;
+  border-radius: 20px;
+}
+
+.item {
+  width: 100%;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  margin: 0px 2px 0px 2px;
+  padding: 1px 3px 1px 3px;
+  font-weight: bold;
+}
+
+#header {
+  font-size: 1.25em;
+}
+
+#feed {
+
+}
