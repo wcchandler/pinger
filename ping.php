@@ -25,4 +25,21 @@ if(isset($_GET['ping'])){
   }
 }
 
+if(isset($_GET['socket'])){
+  if($_GET['socket'] == ""){
+    $host = "127.0.0.1 80";
+  }else{
+    $host = str_replace(':',' ',$_GET['socket']);
+  }
+  $out = shell_exec('nc -v -z '.$host.' 2>&1');
+  $id = str_replace('.','_',$host);
+  $id = str_replace(' ','_',$id);
+  if(preg_match("/succeeded/",$out)){
+    echo json_encode(array("id"=>"h$id","res"=>"1"));
+  }else{
+    ## if it returns nothing, assume network is messed up
+    echo json_encode(array("id"=>"h$id","res"=>"0"));
+  }
+}
+
 ?>
