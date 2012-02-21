@@ -48,5 +48,11 @@
         <name>Win7 Virt</name>
       </server>
     </servers>
+    <sockets>
+      <socket>
+        <ip>127.0.0.1</ip>
+        <port>80</port>
+      </socket>
+    </sockets>
   </devices>
 </config>

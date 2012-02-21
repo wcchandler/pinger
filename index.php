@@ -30,14 +30,30 @@
     foreach($device->children() as $end){
       $str = str_replace('.','_',$end->ip);
       if($xml->frontend->nameorip == "name"){
-        echo "<span class=\"item\" id=\"h$str\" title=\"$end->ip\">$end->name</span>\n";
+        if($end->getName() == "socket"){
+          echo "<span class=\"item\" id=\"h".$str."_".$end->port."\" title=\"$end->ip\">$end->name:$end->port</span>\n";
+        }else{
+          echo "<span class=\"item\" id=\"h$str\" title=\"$end->ip\">$end->name</span>\n";
+        }
       }elseif($xml->frontend->nameorip == "ip"){
-        echo "<span class=\"item\" id=\"h$str\" title=\"$end->name\">$end->ip</span>\n";
+        if($end->getName() == "socket"){
+          echo "<span class=\"item\" id=\"h".$str."_".$end->port."\" title=\"$end->name\">$end->ip:$end->port</span>\n";
+        }else{
+          echo "<span class=\"item\" id=\"h$str\" title=\"$end->name\">$end->ip</span>\n";
+        }
       }else{
         // if neither is chosen, both will be picked
-        echo "<span class=\"item\" id=\"h$str\">$end->name - $end->ip</span>\n";
+        if($end->getName() == "socket"){
+          echo "<span class=\"item\" id=\"h".$str."_".$end->port."\" title=\"$end->name\">$end->name - $end->ip:$end->port</span>\n";
+        }else{
+          echo "<span class=\"item\" id=\"h$str\">$end->name - $end->ip</span>\n";
+        }
       }
-      $js_str = $js_str."    $.getJSON(\"ping.php?ping=$end->ip\",callBack);\n";
+      if($end->getName() == "socket"){
+        $js_str = $js_str."    $.getJSON(\"ping.php?socket=$end->ip:$end->port\",callBack);\n";
+      }else{
+        $js_str = $js_str."    $.getJSON(\"ping.php?ping=$end->ip\",callBack);\n";
+      }
     }
     echo "</div><br />";
   }
