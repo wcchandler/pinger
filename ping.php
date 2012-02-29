@@ -7,7 +7,9 @@ if(isset($_GET['updateTime'])){
 
 if(isset($_GET['ping'])){
   // if this is ever noticably slower, i'll pass it stuff when called
+  // change the good.xml to config.xml, good is what I use at $WORK
   $xml = simplexml_load_file("config.xml");
+  //$xml = simplexml_load_file("good.xml");
   if($_GET['ping'] == ""){
     $host = "127.0.0.1";
   }else{
@@ -26,12 +28,14 @@ if(isset($_GET['ping'])){
 }
 
 if(isset($_GET['socket'])){
+  $xml = simplexml_load_file("config.xml");
+  //$xml = simplexml_load_file("good.xml");
   if($_GET['socket'] == ""){
     $host = "127.0.0.1 80";
   }else{
     $host = str_replace(':',' ',$_GET['socket']);
   }
-  $out = shell_exec('nc -v -z '.$host.' 2>&1');
+  $out = shell_exec('nc -v -z -w '.$xml->backend->timeout.' '.$host.' 2>&1');
   $id = str_replace('.','_',$host);
   $id = str_replace(' ','_',$id);
   if(preg_match("/succeeded/",$out)){

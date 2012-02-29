@@ -1,12 +1,67 @@
-simple, easy to use jQuery frontend to php backend that pings various devices
+README
+-------------------------
 
-main goal is simplicity
+simple, easy to use jQuery frontend to php backend that pings various devices
+and changes colors from green to red depending on if device is up or down.
+
+main goal is simplicity/clean
 
 config.xml has most of the guts
 
 online demo: chandler.mooo.com/pinger
 
------------------------------------
+I have no idea how to add screenshots but they're files in the project.
+
+-------------------------
+
+Files:
+  - config.xml
+    + this has most of the guts in standard xml format.  I tried to add
+      comments when specifying variables.  Most are not being implemented yet.
+    + the index.php file is designed to traverse 3 levels of "tags" inside 
+      <devices> starting with <ping>
+    + all devices inside <ping> will be pinged using the system command
+      ala "shell_exec()" in php.
+    + <switch> is used for all of my switches that I'm monitoring at work (180)
+      this can really be changed to anything as long as it's consistent
+      e.g. <server>, <accesspoint>, <laptop> etc...
+    + <local> or <main> is used to describe it's location...  again, this can
+      be anything as long as it's consistent. e.g. <local>, <remote>, <dell> 
+    + <device> should stay the same.  it *might* need changing in index.php
+      if you change it
+    + <ip> and <name> are the IPs and names of the devices.  <ip> is used for
+      quite a bit of heavy lifting, changing this tag will require quite a few
+      changes in both index.php and ping.php
+
+  - index.php
+    + main page that you see.  quite a bit going on here, try to follow the
+      comments if you wish to do some major changes.  It's designed to
+      traverse 3 levels of "tags" as specified in the config.xml.  You can
+      increase or decrease this as you see fit.
+    + all javascript is written out.  I use some PHP to create the javascript
+      strings needed.  I'm not good with javascript (or PHP really) but... yeah
+    + some of the missing features from config.xml will be implemented in here
+
+  - ping.php
+    + backend function that performs the necessary pinging and socket testing
+    + ?updateTime will return time in a nice, pretty format
+    + ?ping= will use "shell_exec()" to ping a remote device.  timeout set in
+      config.xml->backend->timeout
+    + ?socket= will perform a socket test using 'nc' from the "shell_exec()"
+      timeout is set in config.xml->backend->timeout
+    + everything is getting returned in json format for the jquery callback to 
+      easily parse the stuff and to set it up for more info later on (possibly)
+
+  - main.css
+    + it was getting a bit crowded in index.php so I broke it out.
+
+-------------------------
+
+Known issues:
+  - centos 6(?) has some issues handling 100+ calls
+  - not secure making "shell_exec()" calls without parsing
 
 
-I comment when things aren't obvious.  I'll be adding more later.
+Requirements:
+  - Linux (shell calls), PHP (simpleXML support), jQuery (color change)
+    nc, ping, Apache (with php mod)

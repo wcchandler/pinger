@@ -1,58 +1,121 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <config>
-  <frontend>
-    <refresh>10000</refresh>
-    <nameorip>ip</nameorip>
+  <frontend> <!--  Anything that happens on the main page   -->
+    <!-- refresh timeout is in milliseconds which is seconds * 1000
+         so 30,000 is 30 seconds.  this is how often the AJAX calls itself -->
+    <refresh>30000</refresh>  
+    <!-- this is the value for the spans, can either be "name" "ip" or "both"
+         the other is used as the "title" of the span, or tooltip -->
+    <nameorip>both</nameorip>
+    <!-- groups into action ping and socket, "yes" or "no"
+         I would set this to "no" if not doing any socket tests  -->
+    <groupbyaction>yes</groupbyaction>
+    <!-- seperates device list into groups based on location
+         this seems like it may be an isolated circumstance
+         so I'm adding the ability to turn it off and keep things clean
+         "yes" or "no" -->
+    <groupbylocation>yes</groupbylocation>
+    <!-- allowhiding allows the divs to be hidden; we'll add some finer
+         grained detail but the theory would be to limit the taxing by hiding
+         divs and stopping them from polling the service  -->
+    <allowhiding>yes</allowhiding>
+    <!-- continuepolling lets us continue polling the devices in the background
+         if the divs are hidden.  in the future there plans to be an "event"
+         window which shows when a device goes down.  if this is disabled and
+         a div is hidden then we will not be aware of its state change and 
+         therefore show its status change in the events window -->
+    <continuepolling>no</continuepolling>
+    <!-- hiddenbydefault allows us to hide groups by default, this again,
+         is useful to limit taxing on the initial load, values can be any
+         of the values in the location or type groups, or "none" or "all"
+           e.g. "north" or "switch" or "none" or "all" -->
+    <hiddenbydefault>none</hiddenbydefault>
   </frontend>
-  <backend>
-    <timeout>1</timeout>
+  <backend> <!--  This is stuff that goes to the backend script  -->
+    <!-- timeout is the wait time for ping and nc, in seconds
+         in my situation, it's all LAN, so 1 second timeout is acceptable  -->
+    <timeout>1</timeout> 
   </backend>
   <devices>
-    <switches>
+    <ping>
       <switch>
-        <ip>172.20.10.1</ip>
-        <name>North Campus Core</name>
+	<lan>
+	  <device>
+	    <ip>192.168.1.1</ip>
+	    <name>router</name>
+	  </device>
+	  <device>
+	    <ip>192.168.0.100</ip>
+	    <name>modem</name>
+	  </device>
+	</lan>
+	<wan>
+	  <device>
+	    <ip>69.134.228.1</ip>
+	    <name>nc.res.rr.com</name>
+	  </device>
+	  <device>
+	    <ip>24.93.64.2</ip>
+	    <name>southeast.rr.com</name>
+	  </device>
+	</wan>
       </switch>
-      <switch>
-        <ip>172.20.1.80</ip>
-        <name>NA</name>
-      </switch>
-      <switch>
-        <ip>127.0.0.1</ip>
-        <name>localhost</name>
-      </switch>
-      <switch>
-        <ip>172.20.1.101</ip>
-        <name>NA</name>
-      </switch>
-      <switch>
-        <ip>172.20.10.53</ip>
-        <name>NA</name>
-      </switch>
-      <switch>
-        <ip>192.168.1.1</ip>
-        <name>WilliamCore</name>
-      </switch>
-    </switches>
-    <servers>
       <server>
-        <ip>192.168.1.148</ip>
-        <name>desktop</name>
+        <lan>
+	  <device>
+	    <ip>192.168.1.148</ip>
+	    <name>desktop</name>
+	  </device>
+        </lan>
+        <wan>
+	  <device>
+	    <ip>209.18.47.61</ip>
+	    <name>dns-cac-lb-01.rr.com</name>
+	  </device>
+        </wan>
       </server>
-      <server>
-        <ip>4.2.2.4</ip>
-        <name>Google DNS Server</name>
-      </server>
-      <server>
-        <ip>192.168.1.114</ip>
-        <name>Win7 Virt</name>
-      </server>
-    </servers>
-    <sockets>
-      <socket>
-        <ip>127.0.0.1</ip>
-        <port>80</port>
-      </socket>
-    </sockets>
+    </ping>
+    <socket>
+      <http>
+	<lan>
+	  <device>
+	    <ip>127.0.0.1</ip>
+	    <port>80</port>
+	    <name>localhost</name>
+	  </device>
+	  <device>
+	    <ip>192.168.1.148</ip>
+	    <port>80</port>
+	    <name>desktop</name>
+	  </device>
+	</lan>
+	<wan>
+	  <device>
+	    <ip>198.86.245.99</ip>
+	    <port>80</port>
+	    <name>www1.waketech.edu</name>
+	  </device>
+	  <device>
+	    <ip>207.97.227.239</ip>
+	    <port>80</port>
+	    <name>github.com</name>
+          </device>
+        </wan>
+      </http>
+      <ssh>
+	<wan>
+	  <device>
+	    <ip>68.188.20.102</ip>
+	    <port>22</port>
+	    <name>lance.mckendree.edu</name>
+	  </device>
+	  <device>
+	    <ip>64.244.27.136</ip>
+	    <port>22</port>
+	    <name>pilot.trilug.org</name>
+	  </device>
+	</wan>
+      </ssh>
+    </socket>
   </devices>
 </config>
