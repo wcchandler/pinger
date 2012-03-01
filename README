@@ -58,7 +58,11 @@ Files:
 -------------------------
 
 Known issues:
-  - centos 6(?) has some issues handling 100+ calls
+  - centos 5.7 doesn't have a supported version of PHP out-of-the-box
+    json_ecode() requires PHP >= 5.2; centos 5.7 ships 5.1.6
+    you can install the pecl package json to add support
+      howto: arckid.com/blog/amfphp/
+             how-to-add-install-json-support-to-php-on-centos-in-10-steps
   - not secure making "shell_exec()" calls without parsing
 
 
